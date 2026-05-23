@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clínica Semear | Desenvolvimento Neuropsicomotor e Integração Sensorial</title>
+
+    <meta name="description" content="Clínica Semear - Desenvolvimento Neuropsicomotor e Integração Sensorial. Feira de Santana - BA." />
+    <meta name="theme-color" content="#1B4E8C" />
+    <link rel="icon" href="./favicon.png" type="image/png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --blue:      #1B4E8C;
+            --blue-mid:  #2560A8;
+            --bg:        #F4F1ED;
+            --white:     #FFFFFF;
+            --text:      #2A3240;
+            --muted:     #8A96A3;
+            --border:    rgba(27,78,140,0.10);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* subtle top bar */
+        .top-bar {
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #1B4E8C, #4CAF50, #F5C842, #E8712A, #D9433A);
+        }
+
+        .container {
+            max-width: 440px;
+            width: 100%;
+            padding: 40px 24px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ── header ── */
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 36px;
+            animation: fadeDown 0.6s ease both;
+        }
+
+        .logo-wrap {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 24px rgba(27,78,140,0.12);
+            padding: 14px;
+            margin-bottom: 16px;
+        }
+        .logo-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .clinic-name {
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--blue);
+            margin-bottom: 4px;
+        }
+
+        .tagline {
+            font-size: 0.78rem;
+            color: var(--muted);
+            font-weight: 600;
+            text-align: center;
+            max-width: 260px;
+            line-height: 1.5;
+            letter-spacing: 0.02em;
+        }
+
+        /* grain dots */
+        .grains {
+            display: flex;
+            gap: 7px;
+            margin-top: 14px;
+        }
+        .grain {
+            width: 13px;
+            height: 13px;
+            animation: popIn 0.4s cubic-bezier(.34,1.56,.64,1) both;
+        }
+        /* diagonal directions via border-radius: canto 0 = ponta */
+        .grain:nth-child(1) { background:#8FA8BD; animation-delay:0.3s; border-radius: 0 50% 50% 50%; } /* ponta topo-esq */
+        .grain:nth-child(2) { background:#4CAF50; animation-delay:0.4s; border-radius: 50% 0 50% 50%; } /* ponta topo-dir */
+        .grain:nth-child(3) { background:#F5C842; animation-delay:0.5s; border-radius: 50% 50% 0 50%; } /* ponta baixo-dir */
+        .grain:nth-child(4) { background:#E8712A; animation-delay:0.6s; border-radius: 50% 50% 50% 0; } /* ponta baixo-esq */
+        .grain:nth-child(5) { background:#D9433A; animation-delay:0.7s; border-radius: 0 50% 50% 50%; } /* ponta topo-esq */
+
+        /* ── buttons ── */
+        .buttons {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 15px 18px;
+            border-radius: 14px;
+            text-decoration: none;
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            box-shadow: 0 2px 10px rgba(27,78,140,0.06);
+            transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+            animation: fadeUp 0.5s ease both;
+            color: var(--text);
+        }
+        .btn:nth-child(1) { animation-delay: 0.25s; }
+        .btn:nth-child(2) { animation-delay: 0.35s; }
+        .btn:nth-child(3) { animation-delay: 0.45s; }
+        .btn:nth-child(4) { animation-delay: 0.55s; }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(27,78,140,0.13);
+            border-color: rgba(27,78,140,0.22);
+        }
+        .btn:active { transform: translateY(0); }
+
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .btn-text { flex: 1; }
+        .btn-label {
+            display: block;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+        .btn-sub {
+            display: block;
+            font-size: 0.72rem;
+            color: var(--muted);
+            font-weight: 600;
+            margin-top: 1px;
+        }
+
+        .btn-arrow {
+            font-size: 1.2rem;
+            color: var(--muted);
+        }
+
+        /* icon bg colors — subtle tints */
+        .icon-green  { background: #E8F8EE; }
+        .icon-insta  { background: #FDF0F4; }
+        .icon-email  { background: #FEF9E7; }
+        .icon-map    { background: #FEF0EB; }
+
+        /* ── card ── */
+        .card {
+            width: 100%;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 22px 20px;
+            border: 1.5px solid var(--border);
+            box-shadow: 0 2px 10px rgba(27,78,140,0.06);
+            margin-bottom: 14px;
+            animation: fadeUp 0.5s ease 0.65s both;
+        }
+
+        .card-title {
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .especialidades {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .esp-item {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 0.87rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .esp-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50% 50% 50% 0;
+            flex-shrink: 0;
+        }
+
+        /* ── map ── */
+        .map-card {
+            width: 100%;
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1.5px solid var(--border);
+            box-shadow: 0 2px 10px rgba(27,78,140,0.06);
+            margin-bottom: 28px;
+            animation: fadeUp 0.5s ease 0.75s both;
+        }
+        .map-header {
+            padding: 18px 20px 0px;
+        }
+        .map-address {
+            font-size: 0.8rem;
+            color: var(--muted);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+        .map-embed {
+            width: 100%;
+            height: 170px;
+            border: none;
+            display: block;
+        }
+
+        /* ── footer ── */
+        .footer {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--muted);
+            font-weight: 600;
+            animation: fadeUp 0.5s ease 0.85s both;
+            line-height: 1.8;
+        }
+        .footer a { color: var(--blue); text-decoration: none; font-weight: 700; }
+        .footer a:hover { text-decoration: underline; }
+
+        /* ── animations ── */
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.4); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar"></div>
+
+    <div class="container">
+
+        <!-- header -->
+        <div class="header">
+            <div class="logo-wrap">
+                <img src="./logo.png" alt="Clínica Semear" />
+            </div>
+            <span class="clinic-name">Clínica Semear</span>
+            <span class="tagline">Desenvolvimento Neuropsicomotor e Integração Sensorial</span>
+            <div class="grains">
+                <div class="grain"></div>
+                <div class="grain"></div>
+                <div class="grain"></div>
+                <div class="grain"></div>
+                <div class="grain"></div>
+            </div>
+        </div>
+
+        <!-- links -->
+        <div class="buttons">
+
+            <a class="btn" href="https://api.whatsapp.com/send?phone=5575930256940&text=Olá,%20Clínica%20Semear!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">
+                <div class="btn-icon icon-green">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#25A85A"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                </div>
+                <div class="btn-text">
+                    <span class="btn-label">WhatsApp</span>
+                    <span class="btn-sub">(75) 3025-6940</span>
+                </div>
+                <span class="btn-arrow">›</span>
+            </a>
+
+            <a class="btn" href="https://www.instagram.com/clinicasemear.fsa/" target="_blank" rel="noopener">
+                <div class="btn-icon icon-insta">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#C13584"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </div>
+                <div class="btn-text">
+                    <span class="btn-label">Instagram</span>
+                    <span class="btn-sub">@clinicasemear.fsa</span>
+                </div>
+                <span class="btn-arrow">›</span>
+            </a>
+
+        </div>
+
+        <!-- mapa -->
+        <div class="map-card">
+            <div class="map-header">
+                <p class="card-title">Como chegar</p>
+            </div>
+            <iframe
+                class="map-embed"
+                src="https://maps.google.com/maps?q=Cl%C3%ADnica+Semear+Feira+de+Santana&output=embed&hl=pt-BR"
+                allowfullscreen loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Localização da Clínica Semear">
+            </iframe>
+        </div>
+
+        <!-- especialidades -->
+        <div class="card">
+            <p class="card-title">Nossas Especialidades</p>
+            <div class="especialidades">
+                <div class="esp-item"><div class="esp-dot" style="background:#8FA8BD;border-radius:0 50% 50% 50%"></div>Terapia Ocupacional</div>
+                <div class="esp-item"><div class="esp-dot" style="background:#4CAF50;border-radius:50% 0 50% 50%"></div>Psicomotricidade</div>
+                <div class="esp-item"><div class="esp-dot" style="background:#F5C842;border-radius:50% 50% 0 50%"></div>Fonoaudiologia</div>
+                <div class="esp-item"><div class="esp-dot" style="background:#E8712A;border-radius:50% 50% 50% 0"></div>Psicologia</div>
+                <div class="esp-item"><div class="esp-dot" style="background:#D9433A;border-radius:0 50% 50% 50%"></div>Psicopedagogia</div>
+                <div class="esp-item"><div class="esp-dot" style="background:#1B4E8C;border-radius:50% 0 50% 50%"></div>Fisioterapia</div>
+                <div class="esp-item"><div class="esp-dot" style="background:#4CAF50;border-radius:50% 50% 0 50%"></div>ABA</div>
+                <div class="esp-item"><div class="esp-dot" style="background:#9B59B6;border-radius:0 50% 50% 50%"></div>Musicoterapia</div>
+                <div class="esp-item"><div class="esp-dot" style="background:#27AE60;border-radius:50% 0 50% 50%"></div>Nutrição</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            © <span id="ano"></span> Clínica Semear · Todos os direitos reservados<br />
+            Desenvolvido por <a href="https://www.instagram.com/teamcriativamkt/" target="_blank" rel="noopener">Criativa</a>
+        </div>
+
+    </div>
+
+    <script>document.getElementById('ano').textContent = new Date().getFullYear();</script>
+</body>
+</html>
