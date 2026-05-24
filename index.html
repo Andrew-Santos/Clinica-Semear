@@ -20,6 +20,15 @@
     <meta property="og:title" content="Clínica Semear" />
     <meta property="og:description" content="Desenvolvimento Neuropsicomotor e Integração Sensorial" />
 
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KRX3YRPLMB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-KRX3YRPLMB');
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -119,12 +128,11 @@
             height: 13px;
             animation: popIn 0.4s cubic-bezier(.34,1.56,.64,1) both;
         }
-        /* diagonal directions via border-radius: canto 0 = ponta */
-        .grain:nth-child(1) { background:#8FA8BD; animation-delay:0.3s; border-radius: 0 50% 50% 50%; } /* ponta topo-esq */
-        .grain:nth-child(2) { background:#4CAF50; animation-delay:0.4s; border-radius: 50% 0 50% 50%; } /* ponta topo-dir */
-        .grain:nth-child(3) { background:#F5C842; animation-delay:0.5s; border-radius: 50% 50% 0 50%; } /* ponta baixo-dir */
-        .grain:nth-child(4) { background:#E8712A; animation-delay:0.6s; border-radius: 50% 50% 50% 0; } /* ponta baixo-esq */
-        .grain:nth-child(5) { background:#D9433A; animation-delay:0.7s; border-radius: 0 50% 50% 50%; } /* ponta topo-esq */
+        .grain:nth-child(1) { background:#8FA8BD; animation-delay:0.3s; border-radius: 0 50% 50% 50%; }
+        .grain:nth-child(2) { background:#4CAF50; animation-delay:0.4s; border-radius: 50% 0 50% 50%; }
+        .grain:nth-child(3) { background:#F5C842; animation-delay:0.5s; border-radius: 50% 50% 0 50%; }
+        .grain:nth-child(4) { background:#E8712A; animation-delay:0.6s; border-radius: 50% 50% 50% 0; }
+        .grain:nth-child(5) { background:#D9433A; animation-delay:0.7s; border-radius: 0 50% 50% 50%; }
 
         /* ── buttons ── */
         .buttons {
@@ -152,7 +160,6 @@
         .btn:nth-child(1) { animation-delay: 0.25s; }
         .btn:nth-child(2) { animation-delay: 0.35s; }
         .btn:nth-child(3) { animation-delay: 0.45s; }
-        .btn:nth-child(4) { animation-delay: 0.55s; }
 
         .btn:hover {
             transform: translateY(-2px);
@@ -164,7 +171,6 @@
         .btn-icon {
             width: 40px;
             height: 40px;
-            
             display: flex;
             align-items: center;
             justify-content: center;
@@ -192,11 +198,11 @@
             color: var(--muted);
         }
 
-        /* icon bg colors — subtle tints */
-        .icon-green  { background: #E8F8EE; border-radius: 50% 0 50% 50%;}
-        .icon-insta  { background: #FDF0F4;  border-radius: 0 50% 50%;}
-        .icon-email  { background: #FEF9E7; }
-        .icon-map    { background: #FEF0EB; }
+        /* icon bg colors */
+        .icon-green  { background: #E8F8EE; border-radius: 50% 0 50% 50%; }
+        .icon-insta  { background: #FDF0F4; border-radius: 0 50% 50% 50%; }
+        .icon-email  { background: #FEF9E7; border-radius: 50% 50% 50% 0; }
+        .icon-map    { background: #FEF0EB; border-radius: 50% 0 50% 50%; }
 
         /* ── card ── */
         .card {
@@ -254,13 +260,14 @@
             padding: 0 20px 20px;
         }
         .map-header {
-            padding: 18px 0 0 0 ;
+            padding: 18px 0 12px 0;
         }
         .map-address {
             font-size: 0.8rem;
             color: var(--muted);
             font-weight: 600;
             margin-top: 4px;
+            line-height: 1.5;
         }
         .map-embed {
             width: 100%;
@@ -344,20 +351,35 @@
                 <span class="btn-arrow">›</span>
             </a>
 
+            <a class="btn" href="mailto:clinica.semear.fsa@gmail.com" target="_blank" rel="noopener">
+                <div class="btn-icon icon-email">
+                    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#D4861A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <polyline points="2,4 12,13 22,4"/>
+                    </svg>
+                </div>
+                <div class="btn-text">
+                    <span class="btn-label">E-mail</span>
+                    <span class="btn-sub">clinica.semear.fsa@gmail.com</span>
+                </div>
+                <span class="btn-arrow">›</span>
+            </a>
+
         </div>
 
         <!-- mapa -->
         <div class="map-card">
             <div class="map-header">
                 <p class="card-title">Como chegar</p>
+                <p class="map-address">Rua Alameda Ipê Branco, 121, Sim<br/>Feira de Santana – BA</p>
             </div>
-                <iframe
-                    class="map-embed"
-                    src="https://maps.google.com/maps?q=Cl%C3%ADnica+Semear+Feira+de+Santana&output=embed&hl=pt-BR"
-                    allowfullscreen loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    title="Localização da Clínica Semear">
-                </iframe>
+            <iframe
+                class="map-embed"
+                src="https://maps.google.com/maps?q=Cl%C3%ADnica+Semear+Feira+de+Santana&output=embed&hl=pt-BR"
+                allowfullscreen loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Localização da Clínica Semear">
+            </iframe>
         </div>
 
         <!-- especialidades -->
